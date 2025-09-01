@@ -1,25 +1,27 @@
-/* Reset browser defaults */
+/* Remove default page margins */
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background-color: #f7f9fc; /* light gray background */
-  color: #222;              /* dark text */
-  display: grid;
-  place-items: left;      /* Left aligned */
-  height: 100vh;            /* full screen height */
 }
 
-/* Main heading */
+/* Style the header block */
+header {
+  position: absolute; /* lock it to the page corner */
+  top: 20px;          /* space from the top edge */
+  left: 20px;         /* space from the left edge */
+  text-align: left;   /* align text inside to the left */
+}
+
+/* Heading (your name) */
 h1 {
-  margin: 0;
-  font-size: 3rem;
-  color: royalblue;
-  margin-bottom: 0.5em;
+  margin: 0;          /* remove extra gap */
+  font-size: 2rem;    /* adjust size */
+  color: royalblue;   /* make it stand out */
 }
 
-/* Subheading/paragraph */
+/* Subtitle (portfolio line) */
 p {
-  margin: 0;
-  font-size: 1.5rem;
-  color: #555;
+  margin: 0;          /* remove gap */
+  font-size: 1rem;    /* smaller than name */
+  color: #555;        /* gray tone */
 }
