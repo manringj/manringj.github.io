@@ -5,12 +5,13 @@ body {
   background-color: #f7f9fc; /* light gray background */
   color: #222;              /* dark text */
   display: grid;
-  place-items: center;      /* center everything on the page */
+  place-items: left;      /* Left aligned */
   height: 100vh;            /* full screen height */
 }
 
 /* Main heading */
 h1 {
+  margin: 0;
   font-size: 3rem;
   color: royalblue;
   margin-bottom: 0.5em;
@@ -18,6 +19,7 @@ h1 {
 
 /* Subheading/paragraph */
 p {
+  margin: 0;
   font-size: 1.5rem;
   color: #555;
 }
