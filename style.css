@@ -12,16 +12,16 @@ header {
   text-align: left;   /* align text inside to the left */
 }
 
-/* Heading (your name) */
+/* Main name */
 h1 {
   margin: 0;          /* remove extra gap */
-  font-size: 2rem;    /* adjust size */
+  font-size: 4rem;    /* adjust size */
   color: royalblue;   /* make it stand out */
 }
 
-/* Subtitle (portfolio line) */
-p {
+/* Subtitle */
+.subtitle {
   margin: 0;          /* remove gap */
-  font-size: 1rem;    /* smaller than name */
+  font-size: 2rem;    /* smaller than name */
   color: #555;        /* gray tone */
 }
