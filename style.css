@@ -1,27 +1,111 @@
-/* Remove default page margins */
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+/* ===============  Design tokens  =============== */
+:root {
+  --bg: #0b0f14;
+  --text: #e6edf5;
+  --muted: #9aa4b2;
+  --accent: #6ee7ff;
+  --accent-2: #a78bfa;
+  --ring: #1d2a3a;
+  --shadow: rgba(0,0,0,.35);
+
+  --font-sans: system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
+  --radius: 14px;
 }
 
-/* Style the header block */
-header {
-  position: absolute; /* lock it to the page corner */
-  top: 20px;          /* space from the top edge */
-  left: 20px;         /* space from the left edge */
-  text-align: left;   /* align text inside to the left */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f7f9fc;
+    --text: #0d1218;
+    --muted: #5b6776;
+    --ring: #d8e1ec;
+    --shadow: rgba(0,0,0,.08);
+  }
+}
+
+/* ===============  Base  =============== */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  display: grid;
+  place-items: center;
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(900px 420px at 70% -200px, color-mix(in oklab, var(--accent-2) 22%, transparent), transparent 60%),
+    radial-gradient(700px 380px at -100px 30%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Nice selection color */
+::selection { background: color-mix(in oklab, var(--accent) 30%, transparent); color: var(--text); }
+
+/* ===============  Hero header  =============== */
+header.hero {
+  text-align: center;
+  padding: 48px 32px;   /* larger padding makes the block feel bigger */
+  border: 1px solid var(--ring);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--bg) 80%, transparent), transparent);
+  box-shadow: 0 16px 40px var(--shadow);
+  backdrop-filter: saturate(1.1) blur(6px);
+
+  transform: translateY(10px);
+  opacity: 0;
+  animation: rise .7s ease-out forwards;
+  max-width: 700px;     /* keeps it neat on large screens */
 }
 
 /* Main name */
 h1 {
-  margin: 0;          /* remove extra gap */
-  font-size: 4rem;    /* adjust size */
-  color: royalblue;   /* make it stand out */
+  margin: 0;
+  font-size: clamp(36px, 8vw, 72px); /* responsive scaling */
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: var(--text);
+  text-shadow: 0 1px 0 rgba(0,0,0,.1);
 }
 
 /* Subtitle */
 .subtitle {
-  margin: 0;          /* remove gap */
-  font-size: 2rem;    /* smaller than name */
-  color: #555;        /* gray tone */
+  margin: 12px 0 0;
+  font-size: clamp(16px, 2vw, 24px);
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* Navigation */
+.nav {
+  margin-top: 28px;
+  display: inline-flex;
+  gap: 18px;
+}
+
+.nav-link {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--ring);
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--text);
+  background: color-mix(in oklab, var(--bg) 85%, transparent);
+  transform: translateY(-2px);
+}
+
+/* Animation */
+@keyframes rise {
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ===============  Responsive tweaks  =============== */
+@media (max-width: 480px) {
+  header.hero { padding: 32px 20px; }
+  .nav { flex-direction: column; gap: 12px; }
 }
