@@ -140,6 +140,51 @@ h1 {
   margin-bottom: 1em;
   color: var(--text);
 }
+
+/* ===============  Project cards  =============== */
+.project-list {
+  display: grid;
+  gap: 24px;                 /* space between cards */
+  margin-top: 24px;
+}
+
+.project-card {
+  border: 1px solid var(--ring);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--bg) 95%, transparent), transparent);
+  box-shadow: 0 8px 20px var(--shadow);
+  padding: 24px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.project-card h2 {
+  margin-top: 0;
+  font-size: clamp(20px, 2.2vw, 28px);
+  color: var(--accent);
+}
+
+.project-card p {
+  margin-bottom: 0;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* Hover effect */
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px color-mix(in oklab, var(--accent) 20%, var(--shadow));
+}
+
+/* Mobile: stack nicely */
+@media (max-width: 600px) {
+  .project-list {
+    gap: 16px;
+  }
+  .project-card {
+    padding: 18px;
+  }
+}
+
 /* Icon toggle button */
 .icon-toggle {
   display: inline-flex;
