@@ -12,16 +12,16 @@
   --radius: 14px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #f7f9fc;
-    --text: #0d1218;
-    --muted: #5b6776;
-    --accent: #2563eb;
-    --accent-2: #3b82f6;
-    --ring: #d8e1ec;
-    --shadow: rgba(0,0,0,.08);
-  }
+/* Default: Dark Mode (already defined in :root) */
+
+:root[data-theme="light"] {
+  --bg: #f7f9fc;
+  --text: #0d1218;
+  --muted: #5b6776;
+  --accent: #2563eb;
+  --accent-2: #3b82f6;
+  --ring: #d8e1ec;
+  --shadow: rgba(0,0,0,.08);
 }
 
 /* ===============  Base  =============== */
@@ -139,4 +139,45 @@ h1 {
   line-height: 1.6;
   margin-bottom: 1em;
   color: var(--text);
+}
+/* Icon toggle button */
+.icon-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--ring);
+  background: color-mix(in oklab, var(--bg) 88%, transparent);
+  cursor: pointer;
+  transition: transform .15s ease, background .2s ease, border-color .2s ease;
+  padding: 0;
+}
+
+.icon-toggle:hover { transform: translateY(-1px); }
+.icon-toggle:active { transform: translateY(0); }
+
+.icon-toggle .icon {
+  width: 22px; height: 22px;
+  fill: none; stroke: var(--text); stroke-width: 2;
+}
+
+/* Sun is filled in light mode for contrast */
+:root[data-theme="light"] .icon-toggle .sun { fill: var(--text); stroke: none; }
+
+/* Cross-fade the icons */
+.icon-toggle .sun, .icon-toggle .moon { opacity: 0; transform: scale(.9); transition: opacity .2s ease, transform .25s ease; }
+:root[data-theme="light"] .icon-toggle .sun { opacity: 1; transform: scale(1); }
+:root:not([data-theme="light"]) .icon-toggle .moon { opacity: 1; transform: scale(1); }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .icon-toggle, .icon-toggle .sun, .icon-toggle .moon { transition: none; }
+}
+/* Fixed theme toggle in top-right corner on all pages */
+.icon-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 200;
 }

@@ -6,13 +6,30 @@
     <title>About — James Manring</title>
     <meta name="description" content="About page for James Manring's personal portfolio site." />
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+
   </head>
   <body>
+    <button id="themeToggle" class="icon-toggle" aria-label="Toggle theme" title="Toggle theme">
+  <!-- Sun (shown in light mode) -->
+  <svg class="icon sun" viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"></circle>
+    <g stroke-linecap="round">
+      <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+    </g>
+  </svg>
+  <!-- Moon (shown in dark mode) -->
+  <svg class="icon moon" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79Z"></path>
+  </svg>
+</button>
+
     <header class="site-header">
       <nav class="nav">
         <a href="./" class="nav-link">Home</a>
-        <a href="./about.html" class="nav-link">About</a>
-        <a href="./projects.html" class="nav-link">Projects</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="projects.html" class="nav-link">Projects</a>
+
       </nav>
     </header>
 
@@ -21,5 +38,38 @@
       <p>Hello! I’m James Manring. I started in finance/accounting and I’m learning software by shipping small projects.</p>
       <p>This site is where I practice, break things, and get better—one feature at a time.</p>
     </main>
+<script>
+  const root = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('theme');   // 'light' | 'dark' | null
+
+  if (saved === 'light') root.setAttribute('data-theme', 'light');
+  else if (saved === 'dark') root.removeAttribute('data-theme'); // default: dark
+
+  function setBtnLabel() {
+    if (!btn) return;
+    const isLight = root.getAttribute('data-theme') === 'light';
+    const label = isLight ? 'Switch to dark mode' : 'Switch to light mode';
+    btn.setAttribute('aria-label', label);
+    btn.title = label;
+  }
+  setBtnLabel();
+
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const isLight = root.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        root.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        root.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+      setBtnLabel();
+    });
+  }
+</script>
+
+
   </body>
 </html>
