@@ -107,7 +107,8 @@ h1 {
 
 @media (max-width: 480px) {
   header.hero { padding: 40px 20px; }
-  .nav { flex-direction: column; gap: 14px; }
+  .nav { flex-direction: column; gap: 14px; align-items: center;
+}
 }
 /* Page content layout */
 .site-header {
@@ -163,6 +164,17 @@ h1 {
   color: var(--accent);
 }
 
+.project-link {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color .2s ease, text-shadow .2s ease;
+}
+
+.project-link:hover {
+  color: var(--accent-2);
+  text-shadow: 0 0 6px color-mix(in oklab, var(--accent) 40%, transparent);
+}
+
 .project-card p {
   margin-bottom: 0;
   line-height: 1.6;
@@ -196,7 +208,7 @@ h1 {
   background: color-mix(in oklab, var(--bg) 88%, transparent);
   cursor: pointer;
   transition: transform .15s ease, background .2s ease, border-color .2s ease;
-  padding: 0;
+  padding: 0 8px;   /* vertical 0, horizontal 8px */
 }
 
 .icon-toggle:hover { transform: translateY(-1px); }
